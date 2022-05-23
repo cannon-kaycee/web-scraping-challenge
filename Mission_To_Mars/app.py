@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 
 # Import our pymongo library, which lets us connect our Flask app to our Mongo database.
-import pymongo
+from flask_pymongo import PyMongo
 
 # Create an instance of our Flask app.
 app = Flask(__name__)
@@ -17,7 +17,7 @@ def home():
 
 @app.route("/scrape")
 def mars_scrape():
-    scraped_data = mongo.db.listings
+    scraped_data = mongo.db.scraped_data
     scraped_data_2 = scraped_data.scrape()
     scraped_data.update_one({}, {"$set": scraped_data_2}, upsert=True)
     return redirect("/", code=302)
