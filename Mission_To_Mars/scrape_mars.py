@@ -50,6 +50,7 @@ def scrape():
     df_mars=df.reset_index(drop=True)
     html_table=df_mars.to_html()
     html_table.replace('\n','')
+
     scraped_data["table"] = df_mars
 
     html = browser.html
@@ -59,6 +60,7 @@ def scrape():
     browser.visit(url_4)
 
     title_1=soup.title.text
+
     scraped_data["title_1"] = title_1
 
     html = browser.html
@@ -76,7 +78,8 @@ def scrape():
     for item in soup_5.find_all('img',class_='wide-image'):
         print(item['src'])
     cerb_image= url_4 + item['src']
-    print(cerb_image)
+
+    scraped_data["cerb"] = cerb_image
 
     html = browser.html
     soup = BeautifulSoup(html, "html.parser")
@@ -93,7 +96,8 @@ def scrape():
     for item in soup_syrt.find_all('img',class_='wide-image'):
          print(item['src'])
     syrt_image= url_4 + item['src']
-    print(syrt_image)
+
+    scraped_data["syrt"] = syrt_image
 
     html = browser.html
     soup = BeautifulSoup(html, "html.parser")
@@ -110,7 +114,8 @@ def scrape():
     for item in soup_valles.find_all('img',class_='wide-image'):
          print(item['src'])
     valles_image= url_4 + item['src']
-    print(valles_image)
+    
+    scraped_data["valles"] = valles_image
 
     html = browser.html
     soup = BeautifulSoup(html, "html.parser")
@@ -130,7 +135,7 @@ def scrape():
     schia_image= url_4 + item['src']
     print(schia_image)
 
-
+    scraped_data["schia"] = schia_image
 
 
     # Quit the browser
